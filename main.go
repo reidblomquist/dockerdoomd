@@ -93,7 +93,7 @@ func socketLoop(listener net.Listener, dockerBinary, containerName string) {
 			strbytes := strings.TrimSpace(string(bytes))
 			if strbytes == "list" {
 				output := outputCmd(fmt.Sprintf("%v ps -q", dockerBinary))
-				//cmd := exec.Command("/usr/bin/docker", "inspect", "-f", "{{.Name}}", "`docker", "ps", "-q`")
+				//cmd := exec.Command("docker", "inspect", "-f", "{{.Name}}", "`docker", "ps", "-q`")
 				outputstr := strings.TrimSpace(output)
 				outputparts := strings.Split(outputstr, "\n")
 				for _, part := range outputparts {
@@ -129,7 +129,7 @@ func main() {
 	flag.StringVar(&containerName, "containerName", "dockerdoom", "Name of the docker container running DOOM")
 	flag.IntVar(&dockerWait, "dockerWait", 5, "Time to wait before checking if the container came up")
 	flag.StringVar(&vncPort, "vncPort", "5900", "Port to open for VNC Viewer")
-	flag.StringVar(&dockerBinary, "dockerBinary", "/usr/bin/docker", "docker binary")
+	flag.StringVar(&dockerBinary, "dockerBinary", "docker", "docker binary")
 	flag.BoolVar(&buildImage, "buildImage", false, "Build docker image instead of pulling it from docker image repo")
 	flag.StringVar(&imageName, "imageName", "gideonred/dockerdoom", "Name of docker image to use")
 	flag.StringVar(&dockerfile, "dockerfile", ".", "Path to dockerdoom's Dockerfile")
